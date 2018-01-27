@@ -21,10 +21,15 @@ Plugin 'godlygeek/tabular'
 Plugin 'plasticboy/vim-markdown'
 Plugin 'elzr/vim-json'
 Plugin 'pangloss/vim-javascript'
+
+" for linter, fixer, prettier
+Plugin 'w0rp/ale'
+
+" for react
+Plugin 'styled-components/vim-styled-components'
 Plugin 'mxw/vim-jsx'
 Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'vim-airline/vim-airline'
-Plugin 'w0rp/ale'
 
 call vundle#end()            " required
 filetype plugin indent on    " required
