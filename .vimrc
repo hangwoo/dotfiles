@@ -31,6 +31,9 @@ Plugin 'mxw/vim-jsx'
 Plugin 'chemzqm/vim-jsx-improve'
 Plugin 'vim-airline/vim-airline'
 
+" for colorschema
+Plugin 'nanotech/jellybeans.vim'
+
 call vundle#end()            " required
 filetype plugin indent on    " required
 syntax enable
@@ -39,7 +42,7 @@ let mapleader=","
 " Colorscheme
 "let g:solarized_termcolors=256
 "set background=dark
-colorscheme desert
+colorscheme jellybeans
 
 set ruler
 set expandtab
