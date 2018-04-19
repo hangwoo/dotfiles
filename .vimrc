@@ -104,8 +104,8 @@ nnoremap <leader><space> :nohlsearch<CR>
 " Nerdtree
 "map <C-e> <plug>NERDTreeTabsToggle<CR>
 "map <leader>e :NERDTreeFind<CR>
-nmap <leader>nt :NERDTreeFind<CR>
-nmap <leader>n<space> :NERDTreeToggle<CR>
+nmap <F3> :NERDTreeFind<CR>
+nmap <F4> :NERDTreeToggle<CR>
 let NERDTreeShowBookmarks=1
 let NERDTreeIgnore=['\.pyc', '\~$', '\.swo$', '\.swp$', '\.git', '\.hg', '\.svn', '\.bzr']
 let NERDTreeChDirMode=0
