@@ -1,0 +1,32 @@
+# ~/.bash_profile for login shell on macOS
+
+# Load global and user-specific bash settings
+if [ -f /etc/bashrc ]; then
+  . /etc/bashrc
+fi
+
+if [ -f ~/.bashrc ]; then
+  . ~/.bashrc
+fi
+
+# Enable colored output for ls (macOS-specific)
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+
+# Path prepending (only if variables are set)
+[[ -n "$ES_HOME" ]] && export PATH="$ES_HOME/bin:$PATH"
+[[ -n "$JAVA_HOME" ]] && export PATH="$JAVA_HOME/bin:$PATH"
+[[ -n "$GOPATH" ]] && export PATH="$GOPATH/bin:$PATH"
+
+# Rust and krew (Kubernetes plugin manager)
+[[ -d "$HOME/.cargo/bin" ]] && export PATH="$HOME/.cargo/bin:$PATH"
+[[ -d "$HOME/.krew/bin" ]] && export PATH="$HOME/.krew/bin:$PATH"
+
+# Suppress macOS Catalina bash warning
+export BASH_SILENCE_DEPRECATION_WARNING=1
+
+# Default editor
+#export EDITOR=nvim
+
+# Toolbox App / general macOS tools
+[[ ":$PATH:" != *":/usr/local/bin:"* ]] && export PATH="$PATH:/usr/local/bin"

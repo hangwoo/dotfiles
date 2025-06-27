@@ -1,0 +1,23 @@
+# ~/.zsh_custom
+
+# chpwd hook = 디렉토리 변경 시 자동 실행
+#function chpwd() {
+#  if [[ -f .nvmrc ]]; then
+#    nvm use >/dev/null
+#  fi
+#}
+
+#if [[ -f .nvmrc ]]; then
+#	nvm use >/dev/null
+#fi
+
+# Editor aliases
+#alias vi='nvim'
+#alias vim='nvim'
+#alias oldvim='/usr/bin/vim'
+
+# Git helpers
+alias gittips='cat ~/.gittips'
+alias cb='git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD'
+alias rm-merged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs -r git branch -d'
+alias duh='du -sh * | sort -h'

@@ -1,0 +1,53 @@
+# ~/.bashrc for interactive non-login shell
+
+[ -z "$PS1" ] && return
+
+# History settings
+HISTCONTROL=ignoreboth  # no space-started or duplicate history entries
+HISTSIZE=1000
+HISTFILESIZE=2000
+shopt -s histappend
+shopt -s checkwinsize
+
+# Core dump for debugging
+ulimit -c unlimited  # comment out in production
+
+# Locale for brew
+export LC_ALL=en_US.UTF-8
+
+# Enable color for commands
+if [ -x /usr/bin/dircolors ]; then
+  test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+  alias ls='ls --color=auto'
+  alias grep='grep --color=auto'
+  alias fgrep='fgrep --color=auto'
+  alias egrep='egrep --color=auto'
+fi
+
+# LS aliases
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ll'
+
+# Alert alias
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# C++ make alias
+alias make='make -j 12'
+alias build='make clean && make buildrepo && make'
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"
+[ -s "$NVM_DIR/bash_completion" ] && . "$NVM_DIR/bash_completion"
+
+# pnpm
+export PNPM_HOME="$HOME/Library/pnpm"
+[[ ":$PATH:" != *":$PNPM_HOME:"* ]] && export PATH="$PNPM_HOME:$PATH"
+
+# Yarn
+[[ ":$PATH:" != *":$HOME/.yarn/bin:"* ]] && export PATH="$HOME/.yarn/bin:$PATH"
+
+# Custom settings
+[ -f ~/.bash_custom ] && . ~/.bash_custom
+[ -f ~/.bash_ps1 ] && source ~/.bash_ps1

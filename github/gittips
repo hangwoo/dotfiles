@@ -1,0 +1,41 @@
+## stash
+git stash -u #추적중이지 않은 파일까지 stash
+git stash branch target # stash할 당시의 커밋을 checkout 한 후 새로운 브랜치로
+
+## log
+git log HEAD..master #Head와 master 비교했을때 master 에만 있는 커밋
+git log HEAD...master #Head와 master 비교했을때 master 에만 있는 커밋 + HEAD 에만 있는 커밋
+git log --pretty=oneline
+git log -L :target # target 의 history 를 보여준다
+
+## reset
+git reset --mixed # default, HEAD, staging area 를 옮긴다.
+git reset --soft #  HEAD 를 옮긴다.
+git reset --hard # HEAD, staging area, WD 를 옮긴다.
+git reset -p # patch option. 부분만 reset
+
+## branch
+git branch -v #현재 브랜치들 head 조회
+git branch -vv #브랜치들 리모트와 얼매나 차이있는지
+git branch -a #리모트 포함 모든 브랜치들
+git branch --merged #머지한 브랜치들 (head 와 비교)
+git branch --no-merged #머지하지 않은 브랜치들 (head 와 비교)
+
+## rebase
+git rebase --onto target master develop # target 에 master에는 있고 develop에는 없는 커밋들을 rebase
+
+## clean
+git clean -n # clean test
+git clean -x # ignore 파일까지 삭제
+
+## grep (탐색, 정규표현식으로 기본적으로 WD 에서 탐색함)
+git grep -n # line 찾아줌
+git grep -p # 함수 찾아줌
+git grep --count # 어떤 파일에 몇개가 이용된지 찾는다
+git grep --break --heading # 보기좋게 보여줌
+
+## 이진 탐색으로 최초 버그 발생지 찾기
+git bisect start # 시작
+git bisect bad # 아직 나쁜 커밋이 있다
+git bisect good # 현재는 괜찮다
+git bisect reset # HEAD 를 start 시점으로 되돌리기

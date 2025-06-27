@@ -1,0 +1,28 @@
+# 색상 초기화
+autoload -U colors && colors
+#setopt PROMPT_SUBST  # 프롬프트 안에서 명령어 치환 허용
+
+YELLOW="%{$fg_bold[yellow]%}"
+BLUE="%{$fg_bold[blue]%}"
+GREEN="%{$fg_bold[green]%}"
+WHITE="%{$fg_bold[white]%}"
+MAGENTA="%{$fg_bold[magenta]%}"
+CYAN="%{$fg_bold[cyan]%}"
+RESET="%{$reset_color%}"
+
+# Git 브랜치 표시 함수
+parse_git_branch() {
+	git branch 2> /dev/null | sed -e '/^[^<200b>*]/d' -e 's/*<200b> \(.*\)/ (\1)/'
+}
+
+# Node.js 버전
+get_node_version() {
+  node --version 2>/dev/null
+}
+
+# 프롬프트 설정
+#PROMPT="${BLUE}%n@%m${NORMAL}:${YELLOW}%~${NORMAL} ${GREEN}$(get_node_version)${NORMAL}${ORANGE}$(parse_git_branch)${NORMAL}$"
+
+precmd() {
+	export PROMPT="${YELLOW}%n${CYAN}(node:$(get_node_version))${BLUE}%~${RESET}${GREEN}$(parse_git_branch)${BLUE}$ ${RESET}"
+}

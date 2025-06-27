@@ -1,0 +1,7 @@
+
+# ~/.zprofile
+
+[[ -f ~/.zshrc ]] && source ~/.zshrc
+
+# brew 
+#eval "$(/opt/homebrew/bin/brew shellenv)"

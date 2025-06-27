@@ -1,0 +1,16 @@
+* git issue 수정 커밋 메세지
+  - 키워드와 함께 #issue_number
+  - git commit -m 'keyword #issue_number' (keyword: fix,fixes,fixed,close,closed,closes,resolve,resolves,resolved)
+  - ReferenceLink => https://meetup.toast.com/posts/106
+
+* Sentry issue 수정 커밋 메세지
+  - git commit -m 'fixes SENTRY_ISSUE'
+  - ReferenceLink => https://blog.sentry.io/2017/05/01/release-commits
+
+* 커밋 메세지 작성
+  - fix(Fix): blah blah (버그 수정, 리펙토링 등)
+  - update(Update): blah blah (피처 업데이트, 기능 업데이트)
+  - hotfix(Hotfix): blah blah (hotfix 커밋, 마스터, 디벨롭에 전부 들어갈 커밋)
+  - chore(Chore): blah blah (chore...)
+
+# 4가지 커멧 시작의 경계가 모호할 수도 있음

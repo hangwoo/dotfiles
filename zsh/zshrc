@@ -1,0 +1,59 @@
+# ~/.zshrc
+
+# Load global environment if available
+[[ -f /etc/zshrc ]] && source /etc/zshrc
+
+# History settings
+HISTSIZE=1000
+SAVEHIST=2000
+HISTFILE=~/.zsh_history
+setopt APPEND_HISTORY              # Append to history file, don't overwrite
+setopt HIST_IGNORE_DUPS            # Ignore duplicate commands
+setopt HIST_IGNORE_SPACE           # Ignore lines starting with space
+setopt SHARE_HISTORY               # Share history across sessions
+
+# Coloring for ls, grep
+export CLICOLOR=1
+export LSCOLORS=ExFxBxDxCxegedabagacad
+alias ls='ls -G'
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
+# ls shortcuts
+alias ll='ls -alFh'
+alias la='ls -A'
+alias l='ll'
+
+# Safe make and build
+alias make='make -j 12'
+alias build='make clean && make buildrepo && make'
+
+# Set locale (for brew etc.)
+export LC_ALL=en_US.UTF-8
+ulimit -c unlimited
+
+# Apple Silicon용 Homebrew 먼저 로드
+export PATH="/opt/homebrew/bin:$PATH"
+
+# Editor
+export EDITOR=nvim
+
+# PATH 관리
+[[ -n "$ES_HOME" ]] && path=("$ES_HOME/bin" $path)
+[[ -n "$JAVA_HOME" ]] && path=("$JAVA_HOME/bin" $path)
+[[ -n "$GOPATH" ]] && path=("$GOPATH/bin" $path)
+path=("$HOME/.cargo/bin" "$HOME/.krew/bin" "$HOME/.yarn/bin" "$VOLTA_HOME/bin" $path)
+[[ -d "$HOME/Library/pnpm" ]] && path=("$HOME/Library/pnpm" $path)
+[[ -d /usr/local/bin ]] && path=("/usr/local/bin" $path)
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+  [ -s "/usr/local/opt/nvm/nvm.sh" ] && \. "/usr/local/opt/nvm/nvm.sh"  # This loads nvm
+  [ -s "/usr/local/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/usr/local/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
+
+# Custom prompt or PS1
+[[ -f ~/.zsh_ps1 ]] && source ~/.zsh_ps1  # 혹은 zsh 스타일로 변경 가능
+
+# Source custom aliases/functions
+[[ -f ~/.zsh_custom ]] && source ~/.zsh_custom

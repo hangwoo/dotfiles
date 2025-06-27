@@ -1,0 +1,25 @@
+# ~/.bash_custom
+
+# Auto-load nvm based on .nvmrc when changing directory
+enter_directory() {
+  if [[ "$PWD" != "$PREV_PWD" ]]; then
+    PREV_PWD="$PWD"
+    [[ -f .nvmrc ]] && nvm use >/dev/null
+  fi
+}
+# Append enter_directory to PROMPT_COMMAND safely
+[[ "$PROMPT_COMMAND" != *enter_directory* ]] && \
+  PROMPT_COMMAND="enter_directory${PROMPT_COMMAND:+;$PROMPT_COMMAND}"
+
+# Editor aliases
+#alias vi='nvim'
+#alias vim='nvim'
+#alias oldvim='/usr/bin/vim'
+
+# Git aliases
+alias gittips='cat ~/.gittips'
+alias cb='git symbolic-ref --short HEAD 2>/dev/null || git rev-parse --short HEAD'
+alias rm-merged='git branch --merged | egrep -v "(^\*|master|main|dev)" | xargs -r git branch -d'
+
+# 디렉토리 용량 확인
+alias duh='du -sh * | sort -h'
